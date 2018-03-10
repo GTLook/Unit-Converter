@@ -4,6 +4,7 @@
 <head>
   <meta charset="utf-8">
   <title>Unit Converter</title>
+  <script defer src="data.js"></script>
   <script defer src="main.js"></script>
   <link rel="stylesheet" type="text/css" href="styles.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -32,14 +33,14 @@
       <div class="col-md-3">
         <div class="input-group">
           <div class="input-group-btn">
-            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Unit</button>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">Length</a>
-              <a class="dropdown-item" href="#">Area</a>
-              <a class="dropdown-item" href="#">Volume</a>
+            <!-- <button type="button" class="btn btn-secondary d-none dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ></button> -->
+            <div class="dropdown-menu" id='leftInputMenu'>
+              <a class="dropdown-item">Length</a>
+              <a class="dropdown-item">Area</a>
+              <a class="dropdown-item">Volume</a>
             </div>
           </div>
-          <input type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Select Unit">
+          <input type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Select Unit" id='leftInput'>
         </div>
       </div>
 

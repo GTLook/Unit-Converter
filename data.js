@@ -5,7 +5,7 @@ const data = {
   'minute':	60,
   'hour':	3600,
   'day': 86400,
-  'week':	7*time.day
+  'week':	604800
 },
 
 'distance':{
@@ -18,10 +18,10 @@ const data = {
 
 'mass':{
   'gram':		1,
-  'ton':			1000000,
-  'pound':		453.59237,
-  'ounce':		28.3495,
-  'stone':		6350.29
+  'ton':		1000000,
+  'pound':	453.59237,
+  'ounce':	28.3495,
+  'stone':	6350.29
 },
 
 'volume':{
@@ -35,20 +35,20 @@ const data = {
   'liter':		202.884,
   'gallon':		768,
   'barrel':		24192
-}
+},
 
-  // storage:
-  //   bit,b			1bit
-  //   byte,B		8bit
-  //   kilobit,kb		1024bit
-  //   kilobyte,KB		1024byte
-  //   megabit,mb		1048576bit
-  //   megabyte,MB		1048576byte
-  //   gigabit,gb		1073741824bit
-  //   gigabyte,GB		1073741824byte
-  //   terabit,tb		1099511627776bit
-  //   terabyte,TB		1099511627776byte
-  //   petabit,pb		1125899906842624bit
-  //   petabyte,PB		1125899906842624byte
-
+'storage':{
+    'bit':			1,
+    'byte':   	8,
+    'kilobit': 		1024,
+    'kilobyte': 	1024*8,
+    'megabit':		1048576,
+    'megabyte':		1048576*8,
+    'gigabit':  	1073741824,
+    'gigabyte':		1073741824*8,
+    'terabit':	  1099511627776,
+    'terabyte':		1099511627776*8,
+    'petabit':	  1125899906842624,
+    'petabyte':		1125899906842624*8,
+  }
 }
