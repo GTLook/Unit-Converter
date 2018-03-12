@@ -12,17 +12,22 @@
   justify-content: center;
 }
 
-#convertButton:hover{
-  color: #FF7F12;
-  font-size: 1.5em;
-}
-
 #convertButton{
   display: flex;
   justify-content: center;
 }
 
-.button{
+#convertButton:hover{
+  color: #FF7F12;
+  font-size: 1.5em;
+}
+
+#resetButton{
   display: flex;
   justify-content: center;
+}
+
+#resetButton:hover{
+  color: #FF7F12;
+  font-size: 1.5em;
 }

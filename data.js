@@ -1,43 +1,43 @@
 const data = {
 
-'time':{
-  'second':	1,
-  'minute':	60,
-  'hour':	3600,
-  'day': 86400,
-  'week':	604800
+'Time':{
+  'Second':	1,
+  'Minute':	60,
+  'Hour':	3600,
+  'Day': 86400,
+  'Week':	604800
 },
 
-'distance':{
-  'meter':		1,
-  'feet':		0.3048,
-  'inch':		0.0254,
-  'yard':		0.9144,
-  'mile':		1609.34
+'Distance':{
+  'Meter':		1,
+  'Feet':		0.3048,
+  'Inch':		0.0254,
+  'Yard':		0.9144,
+  'Mile':		1609.34
 },
 
-'mass':{
-  'gram':		1,
-  'ton':		1000000,
-  'pound':	453.59237,
-  'ounce':	28.3495,
-  'stone':	6350.29
+'Mass':{
+  'Gram':		1,
+  'Ton':		1000000,
+  'Pound':	453.59237,
+  'Ounce':	28.3495,
+  'Stone':	6350.29
 },
 
-'volume':{
-  'teaspoon':		1,
-  'tablespoon':	3,
-  'ounce':		6,
-  'gill':		24,
-  'cup':			48,
-  'pint':			96,
-  'quart':		192,
-  'liter':		202.884,
-  'gallon':		768,
-  'barrel':		24192
+'Volume':{
+  'Teaspoon':		1,
+  'Tablespoon':	3,
+  'Ounce':		6,
+  'Gill':		24,
+  'Cup':			48,
+  'Pint':			96,
+  'Quart':		192,
+  'Liter':		202.884,
+  'Gallon':		768,
+  'Barrel':		24192
 },
 
-'storage':{
+'Storage':{
     'bit':			1,
     'byte':   	8,
     'kilobit': 		1024,

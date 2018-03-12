@@ -26,55 +26,51 @@
   <!-- Unit Converter -->
   <div class=container>
     <div class="row">
-      <div class="col-md-2">
-        <input type="text" class="form-control" placeholder="Number">
+      <div class="col-md-2 d-none">
+        <!-- left number box -->
+        <input type="text" class="form-control" placeholder="Number" id='leftNumber'>
       </div>
 
       <div class="col-md-3">
         <div class="input-group">
           <div class="input-group-btn">
-            <!-- <button type="button" class="btn btn-secondary d-none dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ></button> -->
+            <!-- left dropdown menu -->
             <div class="dropdown-menu" id='leftInputMenu'>
-              <a class="dropdown-item">Length</a>
-              <a class="dropdown-item">Area</a>
-              <a class="dropdown-item">Volume</a>
             </div>
           </div>
+          <!-- left input text box -->
           <input type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Select Unit" id='leftInput'>
         </div>
       </div>
 
-      <!-- Convert Button -->
+      <!-- Convert FA Button -->
       <div class="col-md-1 justify-content-center" id='convertButton'>
         <i class="fas fa-random fa-2x"></i>
       </div>
 
-      <div class="col-md-2">
-        <input type="text" class="form-control" placeholder="Number">
+      <div class="col-md-2 d-none">
+        <!-- right number box -->
+        <input type="text" class="form-control" placeholder="Number" id='rightNumber'>
       </div>
 
       <div class="col-md-3">
         <div class="input-group">
           <div class="input-group-btn">
-            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Unit</button>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">Length</a>
-              <a class="dropdown-item" href="#">Area</a>
-              <a class="dropdown-item" href="#">Volume</a>
+            <!-- right dropdown menu -->
+            <div class="dropdown-menu" id='rightInputMenu'>
             </div>
           </div>
-          <input type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Select Unit">
+          <!-- right input text box -->
+          <input type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Select Unit" id='rightInput'>
         </div>
       </div>
     </div>
     <br>
-    <!-- button! -->
-    <div class="row">
-      <div class="col d-none">
 
-      </div>
-      <div class="col button">
-        <button type="button" name="button">Reset</button>
+    <div class="row">
+          <!-- reset button! -->
+      <div class="col" id='resetButton'>
+        <i class="fas fa-redo fa-2x"></i>
       </div>
     </div>
 </body>
