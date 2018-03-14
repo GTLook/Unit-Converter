@@ -208,7 +208,7 @@ const resetAll = function() {
     toggle?toggle=false:toggle=true
   }
   //reset user message
-  message.innerHTML='<span><strong>Hi!</strong> Welcome to the Unit Converter.</span><br><span>Select a data type from the dropdown to get started.</span>'
+  message.innerHTML='<span><strong>Hi!</strong> Welcome to the Unit Converter.</span><br><span>Select a unit type from the dropdown to get started.</span>'
   //reset global variables
   unitType = '';
   leftNumberString = '';
