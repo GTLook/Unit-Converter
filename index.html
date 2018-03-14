@@ -23,6 +23,14 @@
       </div>
     </div>
   </div>
+  <!-- Instructions and error box -->
+  <div class="container">
+    <div class="row text-center">
+      <div class="col" id='message'>
+        <!-- default message -->
+        <span><strong>Hi!</strong> Welcome to the Unit Converter.</span><br>
+        <span>Select a data type from the dropdown to get started.</span>
+      </div>
   <!-- Unit Converter -->
   <div class=container>
     <div class="row">
@@ -44,7 +52,7 @@
       </div>
 
       <!-- Convert FA Button -->
-      <div class="col-md-1 justify-content-center" id='convertButton'>
+      <div class="col-md-1 justify-content-center" id='convertButton' title='Click to Convert'>
         <i class="fas fa-random fa-2x"></i>
       </div>
 
@@ -69,8 +77,8 @@
 
     <div class="row">
           <!-- reset button! -->
-      <div class="col" id='resetButton'>
-        <i class="fas fa-redo fa-2x"></i>
+      <div class="col">
+        <i class="fas fa-redo fa-2x" title='Click to Reset' id='resetButton'></i>
       </div>
     </div>
 </body>
