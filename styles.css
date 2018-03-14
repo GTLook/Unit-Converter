@@ -23,15 +23,22 @@
 
 #convertButton:hover{
   color: #FF7F12;
-  font-size: 1.5em;
+  /* font-size: 1.5em; */
 }
 
-#resetButton{
+.col{
   display: flex;
   justify-content: center;
 }
 
 #resetButton:hover{
   color: #FF7F12;
-  font-size: 1.5em;
+  /* font-size: 1.5em; */
+}
+
+/*turns off number box spinners*/
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

@@ -1,4 +1,5 @@
-const data = {
+
+let data = {
 
 'Time':{
   'Second':	1,
@@ -42,14 +43,14 @@ const data = {
     'bit':			1,
     'byte':   	8,
     'kilobit': 		1024,
-    'kilobyte': 	1024*8,
+    'kilobyte': 	8192,
     'megabit':		1048576,
-    'megabyte':		1048576*8,
+    'megabyte':		8288608,
     'gigabit':  	1073741824,
-    'gigabyte':		1073741824*8,
+    'gigabyte':		8589934592,
     'terabit':	  1099511627776,
-    'terabyte':		1099511627776*8,
+    'terabyte':		8796093022208,
     'petabit':	  1125899906842624,
-    'petabyte':		1125899906842624*8,
+    'petabyte':		9007199254740990
   }
 }
