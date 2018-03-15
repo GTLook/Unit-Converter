@@ -14,6 +14,7 @@ let data = {
   'Feet':		0.3048,
   'Inch':		0.0254,
   'Yard':		0.9144,
+  'Furlong':  201.1680,
   'Mile':		1609.34,
   'Parsec': 30856775714409184
 },
@@ -36,12 +37,13 @@ let data = {
   'Quart':		192,
   'Liter':		202.884,
   'Gallon':		768,
-  'Barrel':		24192
+  'Barrel':		24192,
+  'Hogshead': 48428.41
 },
 
 'Storage':{
-    'bit':			1,
-    'byte':   	8,
+    'bit':			  1,
+    'byte':   	  8,
     'kilobit': 		1024,
     'kilobyte': 	8192,
     'megabit':		1048576,

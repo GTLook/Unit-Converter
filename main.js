@@ -6,16 +6,27 @@ let rightNumberString = '';
 let rightUnitString = '';
 let toggle = true;
 
+//localStorage
 //pull stored user defined variables and merge with data.js
-if(localStorage.getItem('user')){
-  data=JSON.parse(localStorage.getItem('user'))
-}
+if(localStorage.getItem('user')){data=JSON.parse(localStorage.getItem('user'))}
 
+//querySelectors
 //message select
 const message = document.querySelector('#message')
-
-//left number field event listeners
 const leftNumber = document.querySelector('#leftNumber')
+const leftUnit = document.querySelector('#leftInput')
+const leftInput = document.querySelector('#leftInput')
+const leftInputMenu = document.querySelector('#leftInputMenu')
+const convertButton = document.querySelector('#convertButton')
+const rightNumber = document.querySelector('#rightNumber')
+const rightInput = document.querySelector('#rightInput')
+const rightUnit = document.querySelector('#rightInput')
+const rightInputMenu = document.querySelector('#rightInputMenu')
+const resetButton = document.querySelector('#resetButton')
+
+
+//event listeners
+//left number field event listeners
 leftNumber.addEventListener('keyup', function() {
   leftNumberString = leftNumber.value
 })
@@ -32,7 +43,6 @@ leftNumber.addEventListener('focus', function() {
 })
 
 //right number field event listeners
-const rightNumber = document.querySelector('#rightNumber')
 rightNumber.addEventListener('keyup', function() {
   rightNumberString = rightNumber.value
 })
@@ -49,66 +59,138 @@ rightNumber.addEventListener('focus', function() {
 })
 
 //left unit input box
-const leftUnit = document.querySelector('#leftInput')
 leftUnit.addEventListener('keyup', function() {
   if(unitType!=''){leftUnitString = leftUnit.value}
 })
 leftUnit.addEventListener('blur', function(){
     if(checkLeftKeys()&& unitType!=''&&leftUnitString!='') {
       message.innerHTML = '<span><strong>Oh,</strong> I dont recognize that unit,<br> compare it to a known unit and enter both number fields and click the convert icon!</span>'
+      //display number fields
+      leftNumber.parentElement.classList.remove('d-none')
+      rightNumber.parentElement.classList.remove('d-none')
+      leftInputMenu.classList.remove('show')
     }
-    //leftInputMenu.classList.remove('show')
+})
+leftUnit.addEventListener('keydown',function(key){
+  if(key.keyCode == 13){
+    if(checkLeftKeys()&&unitType!=''&&rightUnitString!='') {
+      message.innerHTML = '<span><strong>Oh,</strong> I dont recognize that unit,<br> compare it to a known unit and enter both number fields and click the convert icon!</span>'
+      //display number fields
+      leftNumber.parentElement.classList.remove('d-none')
+      rightNumber.parentElement.classList.remove('d-none')
+    }
+    leftInputMenu.classList.remove('show')
+  }
 })
 
 //right unit input box
-const rightUnit = document.querySelector('#rightInput')
 rightUnit.addEventListener('keyup', function() {
   if(unitType!=''){rightUnitString = rightUnit.value}
 })
 rightUnit.addEventListener('blur', function(){
     if(checkRightKeys() && unitType!=''&&rightUnitString!=''){
       message.innerHTML = '<span><strong>Oh,</strong> I dont recognize that unit,<br> compare it to a known unit and enter both number fields and click the convert icon!</span>'
+      //display number fields
+      leftNumber.parentElement.classList.remove('d-none')
+      rightNumber.parentElement.classList.remove('d-none')
+      rightInputMenu.classList.remove('show')
     }
-    //rightInputMenu.classList.remove('show')
+})
+rightUnit.addEventListener('keydown',function(key){
+  if(key.keyCode == 13){
+    if(checkRightKeys()&&unitType!=''&&leftUnitString!='') {
+      message.innerHTML = '<span><strong>Oh,</strong> I dont recognize that unit,<br> compare it to a known unit and enter both number fields and click the convert icon!</span>'
+      //display number fields
+      leftNumber.parentElement.classList.remove('d-none')
+      rightNumber.parentElement.classList.remove('d-none')
+    }
+    rightInputMenu.classList.remove('show')
+  }
+  if(key.keyCode == 9){
+    key.preventDefault()
+    if(leftUnitString==""||rightUnitString==''){leftUnit.focus()}else{leftNumber.focus();}
+  }
 })
 
+//converter button
+convertButton.addEventListener('click', function() {
+  if(unitType==''){
+    message.innerHTML='<span><strong>Woah! </strong>Select a unit type from the dropdown.</span><br>'
+  }
+  else if(leftUnitString==''||rightUnitString==""){
+    message.innerHTML='<span><strong>Woah! </strong>Enter both units before converting.</span><br>'
+  }
+  else if(leftNumberString === '0' || rightNumberString === '0'){
+    message.innerHTML='<span><strong>No.</strong></span>'
+  }
+  else if(checkLeftKeys() && checkRightKeys()){
+    message.innerHTML='<span><strong>Woah! </strong>One new variable at a time!</span><br>'
+  }
+  else if(checkLeftKeys() || checkRightKeys()){
+    message.innerHTML='<span><strong>Got it. </strong>I\'ll remeber that.</span><br>'
+    if(checkLeftKeys()){
+      if(leftNumberString==''){leftNumberString='1'}
+      if(rightNumberString==''){rightNumberString='1'}
+      data[unitType][leftUnitString]= parseInt(rightNumberString)/parseInt(leftNumberString)*data[unitType][rightUnitString]
+    localStorage.setItem('user',JSON.stringify(data))
+    }
+    else{
+      if(leftNumberString==''){leftNumberString='1'}
+      if(rightNumberString==''){rightNumberString='1'}
+      data[unitType][rightUnitString]= parseInt(leftNumberString)/parseInt(rightNumberString)*data[unitType][leftUnitString]
+    localStorage.setItem('user',JSON.stringify(data))
+    }
+  }
+  else{convert()}
+})
+
+//left input
+leftInput.addEventListener('focus', function() {
+  //remove current
+  reset()
+  //decide if left||right and asign unit type
+  unitType == '' ? units('left') : displayConvert('left', unitType)
+  //show the other box if switching
+  leftInputMenu.classList.add('show')
+  rightInputMenu.classList.remove('show')
+  //show it
+  render()
+})
+
+//right input
+rightInput.addEventListener('focus', function() {
+  reset()
+  unitType == '' ? units('right') : displayConvert('right', unitType)
+  rightInputMenu.classList.add('show')
+  leftInputMenu.classList.remove('show')
+  render()
+})
+
+//resetButton
+resetButton.addEventListener('click', function() {
+  console.log('reset')
+  resetAll()
+})
+
+
+//functions
 //check functions for user entered variables
 const checkLeftKeys = function(){
   if(unitType!=''){
   for(let index in Object.keys(data[unitType])) {
     if(leftUnitString == Object.keys(data[unitType])[index]) {return false;}
     }
+    return true
   }
-  return true
 }
 const checkRightKeys = function(){
   if(unitType!=''){
   for(let index in Object.keys(data[unitType])) {
     if(rightUnitString == Object.keys(data[unitType])[index]) {return false;}
     }
+    return true
   }
-  return true
 }
-
-//converter button
-const convertButton = document.querySelector('#convertButton');
-convertButton.addEventListener('click', function() {
-  if(leftNumberString === '0' || rightNumberString === '0'){
-    message.innerHTML='<span><strong>No.</strong></span>'
-  }
-  if(checkLeftKeys() && checkRightKeys()){
-    message.innerHTML='<span><strong>Woah! </strong>One new variable at a time!</span><br>'
-  } else if(checkLeftKeys() || checkRightKeys()){
-    message.innerHTML='<span><strong>Got it. </strong>I\'ll remeber that.</span><br>'
-    if(checkLeftKeys()){data[unitType][leftUnitString]= parseInt(rightNumberString)/parseInt(leftNumberString)*data[unitType][rightUnitString]
-    localStorage.setItem('user',JSON.stringify(data))
-    }
-    else{ data[unitType][rightUnitString]= parseInt(leftNumberString)/parseInt(rightNumberString)*data[unitType][leftUnitString]
-    localStorage.setItem('user',JSON.stringify(data))
-    }
-  }
-  else{convert()}
-})
 
 //convert function
 const convert = function() {
@@ -171,24 +253,10 @@ const units = function(LeftRight) {
   }
 }
 
-//sort function for unit input fields
-// function filterUnit(input) {
-//   return Object.keys(data[unitType]).filter(function (element){
-//     return element.toLowerCase().indexOf(input.toLowerCase()) > -1;
-//   })
-// }
-
 // display the keys in a unit type, takes 'left'||'right' and 'unitType'
 const displayConvert = function(LeftRight) {
   //select left or right box based on LeftRight Callback
   let InputMenu = document.querySelector(`#${LeftRight}InputMenu`)
-
-  // broken sort function for dropdowns, to be added later
-  // let Input = document.querySelector(`#${LeftRight}Input`)
-  // let unitTypeArray = Object.keys(data[unitType])
-  // if(Input.value!=''){unitTypeArray=unitTypeArray.filterUnit(Input.value)}
-  // console.log(unitTypeArray)// }
-
   for (let index in Object.keys(data[unitType])) {
     let anchor = document.createElement('a')
     InputMenu.appendChild(anchor)
@@ -239,32 +307,6 @@ const reset = function() {
   }
 }
 
-//left input
-const leftInput = document.querySelector('#leftInput');
-const leftInputMenu = document.querySelector('#leftInputMenu')
-leftInput.addEventListener('focus', function() {
-  //remove current
-  reset()
-  //decide if left||right and asign unit type
-  unitType == '' ? units('left') : displayConvert('left', unitType)
-  //show the other box if switching
-  leftInputMenu.classList.add('show')
-  rightInputMenu.classList.remove('show')
-  //show it
-  render()
-})
-
-//right input
-const rightInput = document.querySelector('#rightInput');
-const rightInputMenu = document.querySelector('#rightInputMenu')
-rightInput.addEventListener('focus', function() {
-  reset()
-  unitType == '' ? units('right') : displayConvert('right', unitType)
-  rightInputMenu.classList.add('show')
-  leftInputMenu.classList.remove('show')
-  render()
-})
-
 //render visual fields function
 const render = function() {
   leftNumber.value = leftNumberString
@@ -278,8 +320,7 @@ const resetAll = function() {
   //toggle messages on and off
   if(unitType==''){
     toggle?message.classList.add('d-none'):message.classList.remove('d-none')
-    toggle?toggle=false:toggle=true
-  }
+    toggle?toggle=false:toggle=true}
   //reset user message
   message.innerHTML='<span><strong>Hi!</strong> Welcome to the Unit Converter.<br>Select a unit type from the dropdown to get started.</span>'
   //reset global variables
@@ -297,10 +338,3 @@ const resetAll = function() {
   leftNumber.parentElement.classList.add('d-none')
   rightNumber.parentElement.classList.add('d-none')
 }
-
-//resetButton
-const resetButton = document.querySelector('#resetButton')
-resetButton.addEventListener('click', function() {
-  console.log('reset')
-  resetAll()
-})
