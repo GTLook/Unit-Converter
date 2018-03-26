@@ -149,7 +149,7 @@ leftInput.addEventListener('focus', function() {
   //remove current
   reset()
   //decide if left||right and asign unit type
-  unitType == '' ? units('left') : displayConvert('left', unitType)
+  unitType == '' ? units('left') : displayConvert('left')
   //show the other box if switching
   leftInputMenu.classList.add('show')
   rightInputMenu.classList.remove('show')
@@ -160,7 +160,7 @@ leftInput.addEventListener('focus', function() {
 //right input
 rightInput.addEventListener('focus', function() {
   reset()
-  unitType == '' ? units('right') : displayConvert('right', unitType)
+  unitType == '' ? units('right') : displayConvert('right')
   rightInputMenu.classList.add('show')
   leftInputMenu.classList.remove('show')
   render()
@@ -205,7 +205,7 @@ const convert = function() {
     return
   } else if (leftNumberString == '' && rightNumberString == ''){
     message.innerHTML='<span><strong>Oops! </strong>Something went wrong, enter a number or reset to try again.</span><br>'
-    return// data[unitType] = sortUnit(leftUnitString)}
+    return
   } else {
     //User Message sucess
     message.innerHTML='<span><strong>Converted!</strong> Enter another number, select another unit, or reset to try again.</span><br>'
